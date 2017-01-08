@@ -1,0 +1,40 @@
+<div class="lside">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-8">
+				<form novalidate action="search.html">
+					<div class="input-group">
+						<input class="form-control" data-label="Что искать?" type="text" placeholder="Поиск" required><span class="input-group-btn">
+							<button class="btn btn-default btn-block" type="submit">Искать</button>
+						</span>
+					</div>
+				</form>
+			</div>
+			<div class="col-md-4 text-right">
+				<button class="btn btn-primary" data-toggle="modal" data-target="#NewOrderModal">Новый заказ</button>
+			</div>
+		</div>
+		<div class="row mar-top-30">
+			<ngb-tabset class="col-xs-12">
+			  <ngb-tab title="Сегодня">
+			    <template ngbTabContent>
+					<app-results-today></app-results-today>
+			    </template>
+			  </ngb-tab>
+			  <ngb-tab title="Текущая неделя">
+			    <template ngbTabContent>
+					<app-results-week></app-results-week>
+			    </template>
+			  </ngb-tab>
+			  <ngb-tab title="Текущий месяц">
+			    <template ngbTabContent>
+					<app-results-month></app-results-month>
+			    </template>
+			  </ngb-tab>
+			</ngb-tabset>
+		</div>
+		<div class="mar-top-30" id="map">
+			<app-dashboard-map></app-dashboard-map>
+		</div>
+	</div>
+</div>

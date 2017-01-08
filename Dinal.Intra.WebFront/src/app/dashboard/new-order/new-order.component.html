@@ -1,0 +1,81 @@
+<div class="modal" id="NewOrderModal" role="dialog" aria-labelledby="NewOrderModalLabel" tabindex="-1">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h3>Новый заказ</h3>
+			</div>
+			<form novalidate action="/">
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-sm-8 form-group">
+							<input class="form-control" name="fio" type="text" required placeholder="Фамилия Имя Отчество">
+						</div>
+						<div class="col-sm-4 form-group">
+							<input class="form-control" name="phone" data-mask="+7 (999) 999 99 99" type="tel" required placeholder="Телефон">
+						</div>
+					</div>
+					<fieldset>
+						<legend>Адрес</legend>
+						<div class="row">
+							<div class="col-sm-5 form-group">
+								<input class="form-control" name="street" type="text" required placeholder="Улица">
+							</div>
+							<div class="col-sm-2 form-group">
+								<input class="form-control" name="house" type="text" required placeholder="Дом">
+							</div>
+							<div class="col-sm-3 form-group">
+								<input class="form-control" name="entrance" type="number" placeholder="Подъезд">
+							</div>
+							<div class="col-sm-2 form-group">
+								<input class="form-control" name="apartment" type="text" placeholder="Квартира">
+							</div>
+						</div>
+					</fieldset>
+					<fieldset>
+						<legend>Домофон</legend>
+						<div class="row">
+							<div class="col-sm-8 form-group">
+								<div class="btn-group btn-group-justified" data-toggle="buttons">
+									<label class="btn btn-default active" id="intercom_no" data-initialize="radio">
+										<input class="sr-only" name="intercom_status" type="radio" value="no" checked>Нет
+									</label>
+									<label class="btn btn-default" id="intercom_disabled" data-initialize="radio">
+										<input class="sr-only" name="intercom_status" type="radio" value="disabled">Не работает
+									</label>
+									<label class="btn btn-default" id="intercom_enebled" data-initialize="radio">
+										<input class="sr-only" name="intercom_status" data-toggle="#intercom_input" type="radio" value="enabled">Работает
+									</label>
+								</div>
+							</div>
+							<div class="col-sm-4 form-group">
+								<input class="form-control" name="intercom" type="text" placeholder="Домофон">
+							</div>
+						</div>
+					</fieldset>
+					<fieldset>
+						<legend>Время визита</legend>
+						<div class="row">
+							<div class="col-sm-4 form-group">
+								<div class="datepicker input-group date">
+									<input class="form-control" name="date" type="text" required><span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+								</div>
+							</div>
+							<div class="col-sm-4 form-group">
+								<div class="timepicker input-group date">
+									<input class="form-control" name="date" type="text" required><span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
+								</div>
+							</div>
+						</div>
+					</fieldset>
+					<div class="form-group">
+						<textarea class="form-control" name="comment" rows="3" placeholder="Комментарий"></textarea>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button class="btn btn-primary" data-success-modal="#ThanksModal" type="submit">Сохранить заказ</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
