@@ -29,6 +29,46 @@ namespace Dinal.Intra.WebBack.Migrations
 
                     b.ToTable("Employees");
                 });
+
+            modelBuilder.Entity("Dinal.Intra.WebBack.Models.Order", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Name");
+
+                    b.Property<DateTime>("UpdatedTimestamp");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Orders");
+                });
+
+            modelBuilder.Entity("Dinal.Intra.WebBack.Models.WorkOrder", b =>
+                {
+                    b.Property<int>("Id");
+
+                    b.Property<string>("Name");
+
+                    b.Property<DateTime>("UpdatedTimestamp");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("WorkOrders");
+                });
+
+            modelBuilder.Entity("Dinal.Intra.WebBack.Models.WorkOrder", b =>
+                {
+                    b.HasOne("Dinal.Intra.WebBack.Models.Employee", "Employee")
+                        .WithMany()
+                        .HasForeignKey("Id")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Dinal.Intra.WebBack.Models.Order", "Order")
+                        .WithMany()
+                        .HasForeignKey("Id")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
         }
     }
 }

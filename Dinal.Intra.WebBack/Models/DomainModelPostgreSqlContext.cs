@@ -13,17 +13,20 @@ namespace Dinal.Intra.WebBack.Models
         }
 
         public DbSet<Employee> Employees { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<WorkOrder> WorkOrders { get; set; }
 
         //public DbSet<SourceInfo> SourceInfos { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<Employee>().HasKey(m => m.Id);
-            //builder.Entity<SourceInfo>().HasKey(m => m.SourceInfoId);
-
+            builder.Entity<Order>().HasKey(m => m.Id);
+            builder.Entity<WorkOrder>().HasKey(m => m.Id);
             // shadow properties
             builder.Entity<Employee>().Property<DateTime>("UpdatedTimestamp");
-            //builder.Entity<SourceInfo>().Property<DateTime>("UpdatedTimestamp");
+            builder.Entity<Order>().Property<DateTime>("UpdatedTimestamp");
+            builder.Entity<WorkOrder>().Property<DateTime>("UpdatedTimestamp");
 
             base.OnModelCreating(builder);
         }
@@ -34,6 +37,8 @@ namespace Dinal.Intra.WebBack.Models
 
             //updateUpdatedProperty<SourceInfo>();
             updateUpdatedProperty<Employee>();
+            updateUpdatedProperty<Order>();
+            updateUpdatedProperty<WorkOrder>();
 
             return base.SaveChanges();
         }
