@@ -12,9 +12,9 @@ namespace Dinal.Intra.WebBack.Models
         [Key]
         public int Id { get; set; }
         public string Name { get; set; }
-        [ForeignKey("Id")]
+        [ForeignKey("OrderId")]
         public Order Order { get; set; }
-        [ForeignKey("Id")]
+        [ForeignKey("EmployeeId")]
         public Employee Employee { get; set; }
     }
 }

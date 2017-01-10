@@ -22,7 +22,8 @@
     "Npgsql.EntityFrameworkCore.PostgreSQL": "1.1.0",
     "Npgsql.EntityFrameworkCore.PostgreSQL.Design": "1.1.0",
     "Microsoft.AspNetCore.Rewrite": "1.0.0",
-    "Swashbuckle": "6.0.0-beta902"
+    "Swashbuckle": "6.0.0-beta902",
+    "Microsoft.EntityFrameworkCore.SqlServer": "1.1.0"
   },
 
   "tools": {

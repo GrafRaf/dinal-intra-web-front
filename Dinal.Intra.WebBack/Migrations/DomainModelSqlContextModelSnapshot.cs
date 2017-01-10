@@ -7,15 +7,14 @@ using Dinal.Intra.WebBack.Models;
 
 namespace Dinal.Intra.WebBack.Migrations
 {
-    [DbContext(typeof(DomainModelPostgreSqlContext))]
-    [Migration("20170109004036_Dinal.Intra.WebBack.0.1")]
-    partial class DinalIntraWebBack01
+    [DbContext(typeof(DomainModelSqlContext))]
+    partial class DomainModelSqlContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
             modelBuilder
-                .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn)
-                .HasAnnotation("ProductVersion", "1.1.0-rtm-22752");
+                .HasAnnotation("ProductVersion", "1.1.0-rtm-22752")
+                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("Dinal.Intra.WebBack.Models.Employee", b =>
                 {
@@ -23,8 +22,6 @@ namespace Dinal.Intra.WebBack.Migrations
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Name");
-
-                    b.Property<DateTime>("UpdatedTimestamp");
 
                     b.HasKey("Id");
 
@@ -38,8 +35,6 @@ namespace Dinal.Intra.WebBack.Migrations
 
                     b.Property<string>("Name");
 
-                    b.Property<DateTime>("UpdatedTimestamp");
-
                     b.HasKey("Id");
 
                     b.ToTable("Orders");
@@ -47,13 +42,20 @@ namespace Dinal.Intra.WebBack.Migrations
 
             modelBuilder.Entity("Dinal.Intra.WebBack.Models.WorkOrder", b =>
                 {
-                    b.Property<int>("Id");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int?>("EmployeeId");
 
                     b.Property<string>("Name");
 
-                    b.Property<DateTime>("UpdatedTimestamp");
+                    b.Property<int?>("OrderId");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("EmployeeId");
+
+                    b.HasIndex("OrderId");
 
                     b.ToTable("WorkOrders");
                 });
@@ -62,13 +64,11 @@ namespace Dinal.Intra.WebBack.Migrations
                 {
                     b.HasOne("Dinal.Intra.WebBack.Models.Employee", "Employee")
                         .WithMany()
-                        .HasForeignKey("Id")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("EmployeeId");
 
                     b.HasOne("Dinal.Intra.WebBack.Models.Order", "Order")
                         .WithMany()
-                        .HasForeignKey("Id")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("OrderId");
                 });
         }
     }

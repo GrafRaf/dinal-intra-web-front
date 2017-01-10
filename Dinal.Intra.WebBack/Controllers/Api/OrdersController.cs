@@ -12,9 +12,9 @@ namespace Dinal.Intra.WebBack.Controllers.Api
     [Route("api/[controller]")]
     public class OrdersController : Controller
     {
-        private readonly DomainModelPostgreSqlContext _context;
+        private readonly DomainModelSqlContext _context;
 
-        public OrdersController(DomainModelPostgreSqlContext context)
+        public OrdersController(DomainModelSqlContext context)
         {
             _context = context;
         }

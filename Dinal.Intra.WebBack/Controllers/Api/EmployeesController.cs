@@ -12,9 +12,9 @@ namespace Dinal.Intra.WebBack.Controllers.Api
     [Route("api/[controller]")]
     public class EmployeesController : Controller
     {
-        private readonly DomainModelPostgreSqlContext _context;
+        private readonly DomainModelSqlContext _context;
 
-        public EmployeesController(DomainModelPostgreSqlContext context)
+        public EmployeesController(DomainModelSqlContext context)
         {
             _context = context;
         }

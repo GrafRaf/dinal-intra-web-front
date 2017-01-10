@@ -33,10 +33,10 @@ namespace Dinal.Intra.WebBack
                 .AddJsonFile("appsettings.json");
 
             Configuration = builder.Build();
-            var sqlConnectionString = Configuration.GetConnectionString("DataAccessPostgreSqlProvider");
+            var sqlConnectionString = Configuration.GetConnectionString("SqlServerConnection");
 
-            services.AddDbContext<DomainModelPostgreSqlContext>(options => {
-                options.UseNpgsql(sqlConnectionString, b => b.MigrationsAssembly("Dinal.Intra.WebBack"));
+            services.AddDbContext<DomainModelSqlContext>(options => {
+                options.UseSqlServer(sqlConnectionString, b => b.MigrationsAssembly("Dinal.Intra.WebBack"));
             });
 
             services.AddMvc();

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Dinal.Intra.WebBack.Models;
+using Microsoft.EntityFrameworkCore;
 
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -12,9 +13,9 @@ namespace Dinal.Intra.WebBack.Controllers.Api
     [Route("api/[controller]")]
     public class WorkOrdersController : Controller
     {
-        private readonly DomainModelPostgreSqlContext _context;
+        private readonly DomainModelSqlContext _context;
 
-        public WorkOrdersController(DomainModelPostgreSqlContext context)
+        public WorkOrdersController(DomainModelSqlContext context)
         {
             _context = context;
         }
@@ -23,7 +24,10 @@ namespace Dinal.Intra.WebBack.Controllers.Api
         [HttpGet]
         public IEnumerable<WorkOrder> Get()
         {
-            return _context.WorkOrders.ToList();
+            return _context.WorkOrders
+                .Include(workorder=>workorder.Employee)
+                .Include(workorder => workorder.Order)
+                .ToList();
         }
 
         // GET api/workorders/5
@@ -37,7 +41,11 @@ namespace Dinal.Intra.WebBack.Controllers.Api
         [HttpPost]
         public void Post([FromBody]WorkOrder workorder)
         {
-            _context.WorkOrders.Add(workorder);
+            var ee = _context.WorkOrders.Add(new WorkOrder() { Name = workorder.Name });
+            _context.SaveChanges();
+            ee.Entity.Order = _context.Orders.Where(order => order.Id == workorder.Order.Id).SingleOrDefault();
+            ee.Entity.Employee = _context.Employees.Where(employee => employee.Id == workorder.Employee.Id).SingleOrDefault();
+            _context.WorkOrders.Update(ee.Entity);
             _context.SaveChanges();
         }
 
