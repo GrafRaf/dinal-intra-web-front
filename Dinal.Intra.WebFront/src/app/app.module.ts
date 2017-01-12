@@ -1,3 +1,4 @@
+import { CoreModule } from './core/core.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -25,6 +26,7 @@ import { PageNotFoundComponent }   from './not-found/not-found.component';
     HttpModule,
     NgbModule.forRoot(),
     AppRoutingModule,
+    CoreModule,
     OrdersModule,
     DashboardModule
   ],
